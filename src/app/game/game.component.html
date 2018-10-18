@@ -1,0 +1,20 @@
+<h1>Games</h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <app-game-form (addGame)="addNewGame($event)"></app-game-form>
+    </div>
+    <div class="row" *ngFor="let game of games;let i = 'index'">
+    <div class="row">
+        <h4 id="{{i}}" appStrikethrough>{{game.name}} due on {{game.completeDate|date|uppercase}}</h4>
+        <button class="btn btn-primary" (click)='toogleDetails(i)'>Toogle Details</button>
+    </div>
+
+    <div class="row" *ngIf="game.showDescription">
+    <app-game-details  [game]='game' (isComplete)= 'deleteGame($event,i)'></app-game-details>
+</div>
+
+</div>
+
+</div>
+ <p  *ngIf='games.length > 4'>Here are games to play</p>
